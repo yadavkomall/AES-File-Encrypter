@@ -47,20 +47,28 @@ CODE EXPLAINATION -
 
 1.File Selection:
 The user selects a file to be encrypted using a JFileChooser dialog.
+
 2.Reading the File:
 The selected file is read into memory as a byte array. The contents of the file are stored in the data array.
+
 3.Creating a Secret Key:
 The encryption process requires a secret key. In this code, the key is provided as a byte[] array. The key should be a sequence of bytes with a specific length, depending on the AES key size (e.g., 16 bytes for AES-128, 24 bytes for AES-192, or 32 bytes for AES-256).
+
 4.Initializing the Cipher:
-The Cipher class is used to perform encryption. A Cipher object is created and initialized with the AES algorithm using the line Cipher cipher = Cipher.getInstance("AES");.
+The Cipher class is used to perform encryption. A Cipher object is created and initialized with the AES algorithm using the line Cipher cipher = Cipher.getInstance("AES");
+
 5.Creating a SecretKeySpec:
 A SecretKeySpec object is created using the provided key byte array. The SecretKeySpec class is used to wrap the secret key as a key specification. It ensures that the key is in the correct format and can be used securely with the specified algorithm. The line SecretKeySpec secretKey = new SecretKeySpec(key, "AES"); accomplishes this.
+
 6.Initializing the Cipher for Encryption:
 The cipher.init(Cipher.ENCRYPT_MODE, secretKey); line initializes the Cipher object in encryption mode (Cipher.ENCRYPT_MODE) with the provided secret key.
+
 7.Encryption:
 The cipher.doFinal(data) method is called to encrypt the data array. The AES encryption process is performed on the entire data array, and the result is stored in the encryptedData array.
+
 8.Writing the Encrypted Data Back to the File:
 The encrypted data in the encryptedData array is written back to the same file using a FileOutputStream. This overwrites the original file with the encrypted data.
+
 9.Displaying Encryption Completion:
 A message dialog (JOptionPane.showMessageDialog) is shown to the user indicating that the encryption process is done.
 During encryption, each block of plaintext is XORed with the previous ciphertext block (CBC mode) before encryption. The first block is XORed with an Initialization Vector (IV), which is provided implicitly by the cipher.init method. The IV ensures that even identical plaintext blocks result in different ciphertext blocks, providing an extra layer of security.
