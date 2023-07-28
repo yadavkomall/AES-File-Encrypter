@@ -35,8 +35,7 @@ The fourth row is shifted thrice to the left.
 
 MixColumns :
 
-This step is basically a matrix multiplication. Each column is multiplied with a specific matrix and thus the position of each byte in the column is changed as a result.
-This step is skipped in the last round.
+Each column of four bytes is now transformed using a special mathematical function. This function takes as input the four bytes of one column and outputs four completely new bytes, which replace the original column. The result is another new matrix consisting of 16 new bytes. It should be noted that this step is not performed in the last round.
 
 Add Round Keys :
 
